@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Pharmacy Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, #10b981 0%, #0d966c 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        }
+        
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .project-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .live-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .preview-header h2 {
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .website-frame {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 600px;
+            margin-top: 20px;
+        }
+        
+        .website-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .code-section {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            overflow-x: auto;
+        }
+        
+        .code-section pre {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        .btn-dark {
+            background: #1f2937;
+            color: white;
+        }
+        
+        .btn-dark:hover {
+            background: #111827;
+            transform: translateY(-2px);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+        
+        .instructions {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f9ff 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .instructions ol {
+            padding-left: 25px;
+            margin: 20px 0;
+        }
+        
+        .instructions li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .tech-tag {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .app-screenshot {
+            text-align: center;
+            margin: 40px 0;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .screenshot-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .screenshot-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #92400e;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .website-frame {
+                height: 400px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <button onclick="goBackToPortfolio()" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </button>
+        
+        <!-- Project Header -->
+        <div class="project-header">
+            <h1><i class="fas fa-heartbeat"></i> Medicare Pharmacy Website</h1>
+            <p>A complete pharmacy management system with prescription upload, medicine ordering, and doctor consultation features</p>
+            <div class="tech-stack" style="margin-top: 20px; justify-content: center;">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Responsive Design</span>
+                <span class="tech-tag">GitHub Pages</span>
+            </div>
+        </div>
+        
+        <!-- Live Preview Section -->
+        <div class="live-preview">
+            <div class="preview-header">
+                <h2><i class="fas fa-desktop"></i> Live Website Preview</h2>
+                <div class="button-group">
+                    <a href="https://saniyathakur13.github.io/medicare/" target="_blank" class="btn btn-success">
+                        <i class="fas fa-external-link-alt"></i> Open in New Tab
+                    </a>
+                </div>
+            </div>
+            
+            <p>View the live website embedded below. The website features:</p>
+            <ul style="padding-left: 20px; margin: 15px 0;">
+                <li>Medicine ordering system</li>
+                <li>Prescription upload functionality</li>
+                <li>Doctor consultation booking</li>
+                <li>Responsive design for all devices</li>
+                <li>Secure payment integration</li>
+            </ul>
+            
+            <div class="website-frame">
+                <iframe src="https://saniyathakur13.github.io/medicare/" 
+                        title="Medicare Pharmacy Website"
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        
+        <!-- Features Section -->
+        <h2 style="color: #1e293b; margin: 50px 0 20px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-star"></i> Key Features
+        </h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-pills"></i>
+                <h3>Medicine Database</h3>
+                <p>Comprehensive database of medicines with search, filter, and categorization features.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-prescription"></i>
+                <h3>Digital Prescription</h3>
+                <p>Upload and manage prescriptions digitally with secure cloud storage.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-user-md"></i>
+                <h3>Doctor Consultation</h3>
+                <p>Online video consultation with certified doctors and specialists.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>E-commerce System</h3>
+                <p>Complete shopping cart, checkout, and order tracking system.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-truck"></i>
+                <h3>Home Delivery</h3>
+                <p>Trackable home delivery with real-time updates and notifications.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Responsive</h3>
+                <p>Fully responsive design that works perfectly on all devices.</p>
+            </div>
+        </div>
+        
+        <!-- Code Section -->
+        <div class="code-section">
+            <h3 style="color: white; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-code"></i> HTML Structure Example
+            </h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Medicare Pharmacy&lt;/title&gt;
+    &lt;!-- Bootstrap CSS --&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;!-- Font Awesome --&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;
+    &lt;!-- Custom CSS --&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Navigation --&gt;
+    &lt;nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"&gt;
+        &lt;div class="container"&gt;
+            &lt;a class="navbar-brand" href="index.html"&gt;
+                &lt;i class="fas fa-heartbeat text-success"&gt;&lt;/i&gt;
+                &lt;span class="fw-bold"&gt;Medicare&lt;/span&gt; Pharmacy
+            &lt;/a&gt;
+            &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"&gt;
+                &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+                &lt;ul class="navbar-nav ms-auto"&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link active" href="index.html"&gt;Home&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="medicines.html"&gt;Medicines&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="upload.html"&gt;Upload Prescription&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="consultation.html"&gt;Doctor Consult&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="nav-item"&gt;
+                        &lt;a class="nav-link" href="cart.html"&gt;
+                            &lt;i class="fas fa-shopping-cart"&gt;&lt;/i&gt;
+                            &lt;span class="badge bg-success cart-count"&gt;0&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- Hero Section --&gt;
+    &lt;section class="hero-section py-5"&gt;
+        &lt;div class="container"&gt;
+            &lt;div class="row align-items-center"&gt;
+                &lt;div class="col-lg-6"&gt;
+                    &lt;h1 class="display-4 fw-bold mb-4"&gt;Your Health is Our Priority&lt;/h1&gt;
+                    &lt;p class="lead mb-4"&gt;Get authentic medicines, doctor consultations, and health services at your doorstep.&lt;/p&gt;
+                    &lt;a href="medicines.html" class="btn btn-success btn-lg px-4"&gt;
+                        &lt;i class="fas fa-shopping-cart"&gt;&lt;/i&gt; Order Medicines
+                    &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class="col-lg-6"&gt;
+                    &lt;img src="images/hero-image.png" class="img-fluid" alt="Pharmacy"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Bootstrap JS --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+    &lt;!-- Custom JS --&gt;
+    &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <a href="https://github.com/saniyathakur13/medicare" target="_blank" class="btn btn-dark">
+                <i class="fab fa-github"></i> View Source Code
+            </a>
+            <a href="https://saniyathakur13.github.io/medicare/" target="_blank" class="btn btn-primary">
+                <i class="fas fa-external-link-alt"></i> Visit Live Website
+            </a>
+            <button onclick="downloadProjectFiles()" class="btn btn-success">
+                <i class="fas fa-download"></i> Download Project Files
+            </button>
+        </div>
+        
+        <!-- Installation Instructions -->
+        <div class="instructions">
+            <h2><i class="fas fa-rocket"></i> How to Run This Project Locally</h2>
+            <ol>
+                <li><strong>Clone the repository:</strong>
+                    <div class="code-section" style="margin: 10px 0; padding: 12px; background: #1e293b;">
+                        <code style="color: #e2e8f0; font-family: monospace;">git clone https://github.com/saniyathakur13/medicare.git</code>
+                    </div>
+                </li>
+                <li><strong>Navigate to project directory:</strong>
+                    <div class="code-section" style="margin: 10px 0; padding: 12px; background: #1e293b;">
+                        <code style="color: #e2e8f0; font-family: monospace;">cd medicare</code>
+                    </div>
+                </li>
+                <li><strong>Open in browser:</strong> Open <span class="highlight">index.html</span> in your preferred web browser</li>
+                <li><strong>For local server (optional):</strong> Use VS Code Live Server or Python's HTTP server:
+                    <div class="code-section" style="margin: 10px 0; padding: 12px; background: #1e293b;">
+                        <code style="color: #e2e8f0; font-family: monospace;">python -m http.server 8000</code>
+                    </div>
+                </li>
+                <li><strong>Access locally:</strong> Open <span class="highlight">http://localhost:8000</span> in your browser</li>
+            </ol>
+        </div>
+        
+        <!-- Project Structure -->
+        <div class="instructions" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 5px solid #10b981;">
+            <h2><i class="fas fa-folder-open"></i> Project Structure</h2>
+            <pre style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: monospace;">
+medicare/
+├── index.html              # Main homepage
+├── medicines.html          # Medicine listing page
+├── upload.html             # Prescription upload page
+├── consultation.html       # Doctor consultation booking
+├── cart.html              # Shopping cart page
+├── checkout.html          # Checkout process
+├── css/
+│   ├── style.css          # Main stylesheet
+│   └── responsive.css     # Responsive styles
+├── js/
+│   ├── main.js            # Main JavaScript
+│   ├── cart.js            # Cart functionality
+│   └── upload.js          # File upload handling
+├── images/                # All images and icons
+└── README.md              # Project documentation</pre>
+        </div>
+        
+        
+    
+    <script>
+        // Function to go back to portfolio
+        function goBackToPortfolio() {
+            // If embedded in portfolio modal
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage('close-modal', '*');
+            } else if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Function to download project files
+        function downloadProjectFiles() {
+            // Create a zip file download (simulated)
+            alert('📥 Project files download initiated!\n\nIf download doesn\'t start, visit:\nhttps://github.com/saniyathakur13/medicare\n\nClick "Code" → "Download ZIP"');
+            
+            // Alternative: Direct GitHub zip download
+            window.open('https://github.com/saniyathakur13/medicare/archive/refs/heads/main.zip', '_blank');
+        }
+        
+        // Function to copy code to clipboard
+        function copyCode() {
+            const codeElement = document.querySelector('.code-section pre code');
+            const codeText = codeElement.textContent;
+            
+            navigator.clipboard.writeText(codeText).then(() => {
+                showNotification('✅ Code copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                showNotification('❌ Failed to copy. Please select and copy manually.');
+            });
+        }
+        
+        // Notification function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Handle iframe messages
+        window.addEventListener('message', function(event) {
+            if (event.data === 'close-modal') {
+                goBackToPortfolio();
+            }
+        });
+    </script>
+</body>
+</html>
